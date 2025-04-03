@@ -1,0 +1,471 @@
+/* --- Global Styles & Variables --- */
+:root {
+    --bg-color: #111318; /* Darker background */
+    --bg-color-lighter: #1c1e24; /* Slightly lighter container background */
+    --bg-color-input: #2a2d35; /* Input background */
+    --text-color: #e0e0e0; /* Lighter text for better contrast */
+    --text-color-muted: #888ea0; /* Muted text */
+    --primary-color: #4a90e2; /* A slightly desaturated blue */
+    --primary-color-hover: #3a7ac0;
+    --border-color: #3a3f4b; /* Softer border color */
+    --border-color-focus: #4a90e2;
+    --error-color: #e57373; /* Softer red */
+    --success-color: #81c784; /* Softer green */
+    --warning-color: #ffb74d; /* Softer orange */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; /* Modern font */
+    --border-radius: 5px; /* Slightly reduced border radius */
+    --box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3); /* Adjusted shadow */
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap'); /* Import Inter font */
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 25px; /* Slightly increased padding */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    line-height: 1.6;
+    font-size: 15px; /* Base font size */
+}
+
+/* --- Typography --- */
+h1, h2, h3, h4 {
+    color: #ffffff;
+    margin-top: 1.8em; /* Adjusted spacing */
+    margin-bottom: 0.8em;
+    font-weight: 600;
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.9rem; /* Slightly smaller H1 */
+    margin-top: 0.5em;
+    margin-bottom: 1.2em; /* Increased bottom margin */
+    font-weight: 600;
+    color: var(--primary-color); /* Use primary color for main title */
+}
+
+h2 {
+    font-size: 1.5rem; /* Adjusted size */
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.4em;
+    font-weight: 500; /* Slightly lighter weight */
+}
+
+h3 {
+    font-size: 1.25rem; /* Adjusted size */
+    color: var(--text-color); /* Standard text color for H3 */
+    font-weight: 500;
+}
+
+h4 {
+    font-size: 1.05rem; /* Adjusted size */
+    color: var(--text-color-muted);
+    margin-bottom: 0.6em;
+    font-weight: 500;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 45px 0; /* Increased margin */
+}
+
+/* --- Forms & Inputs --- */
+form label, .holding-row label /* General label styling */
+{
+    font-weight: 500;
+    display: block;
+    margin-bottom: 6px; /* Increased margin */
+    color: var(--text-color-muted);
+    font-size: 0.85rem; /* Smaller label */
+    text-transform: uppercase; /* Uppercase labels */
+    letter-spacing: 0.5px;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px 14px; /* Adjusted padding */
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--bg-color-input);
+    color: var(--text-color);
+    font-size: 0.95rem; /* Adjusted font size */
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    outline: none;
+    border-color: var(--border-color-focus);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.25); /* Adjusted focus glow */
+}
+
+input::placeholder {
+    color: var(--text-color-muted);
+    opacity: 0.6; /* Slightly less opaque placeholder */
+}
+
+/* --- Buttons --- */
+button, button[type="submit"], button[type="button"] { /* Be more specific */
+    padding: 10px 20px; /* Adjusted padding */
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    font-weight: 500; /* Medium weight */
+    font-size: 0.9rem; /* Adjusted size */
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+button:hover, button[type="submit"]:hover, button[type="button"]:hover {
+    background-color: var(--primary-color-hover);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+button:active, button[type="submit"]:active, button[type="button"]:active {
+    transform: scale(0.98); /* Slightly less pronounced scale */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Specific button types */
+button.remove-holding {
+    background-color: var(--error-color);
+    padding: 5px 10px; /* Smaller remove button */
+    font-size: 0.75rem;
+    min-width: auto; /* Let content decide width */
+    width: 80px; /* Fixed small width */
+    text-align: center;
+    box-shadow: none; /* Remove shadow from remove button */
+}
+button.remove-holding:hover {
+    background-color: #d35f5f; /* Darker hover for error */
+    box-shadow: none;
+}
+
+#add-holding {
+    background-color: var(--success-color);
+    color: #111; /* Keep dark text for contrast */
+}
+#add-holding:hover {
+    background-color: #6aaf70; /* Darker hover for success */
+}
+
+/* --- Layout Containers --- */
+#stbr-form {
+    display: flex;
+    justify-content: flex-start; /* Align items start */
+    align-items: flex-end; /* Align items to bottom for consistent button alignment */
+    flex-wrap: wrap;
+    gap: 15px 25px; /* Row gap, Column gap */
+    margin-bottom: 40px; /* Increased margin */
+    padding: 25px 30px; /* Adjusted padding */
+    background-color: var(--bg-color-lighter);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color); /* Add subtle border */
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 160px; /* Give inputs some base width */
+    flex-grow: 1; /* Allow groups to grow */
+    position: relative; /* For search results positioning */
+}
+
+.ticker-group {
+    min-width: 220px; /* Wider ticker input */
+}
+
+/* --- Ticker Search --- */
+#search-results {
+    position: absolute;
+    top: calc(100% + 2px); /* Position below the input with small gap */
+    left: 0;
+    right: 0;
+    background-color: var(--bg-color-input);
+    border: 1px solid var(--border-color);
+    border-top: none;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    box-sizing: border-box;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+#search-results ul {
+    list-style: none;
+    padding: 5px 0; /* Add padding top/bottom */
+    margin: 0;
+}
+
+#search-results li {
+    padding: 8px 15px; /* Adjusted padding */
+    cursor: pointer;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    transition: background-color 0.15s ease;
+}
+
+#search-results li:hover {
+    background-color: var(--primary-color-hover); /* Use primary hover for selection */
+    color: #fff;
+}
+
+/* --- Portfolio Section --- */
+#portfolio-input-section {
+    margin-top: 40px; /* Added top margin */
+    margin-bottom: 40px; /* Increased margin */
+    padding: 25px 30px; /* Adjusted padding */
+    background-color: var(--bg-color-lighter);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color); /* Add subtle border */
+}
+
+#holdings-list .holding-row {
+    display: flex;
+    align-items: flex-end; /* Align bottoms */
+    gap: 15px; /* Consistent gap */
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed var(--border-color); /* Dashed separator */
+}
+#holdings-list .holding-row:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+.holding-row > div { /* Wrap inputs in divs for better control if needed, or style inputs directly */
+    flex-grow: 1;
+    /* Removed flex-grow: 1 to rely on flex-basis */
+    display: flex; /* Make label/input container flex */
+    flex-direction: column; /* Stack label and input */
+}
+
+/* --- Target the select and other inputs in the holding row --- */
+.holding-row .holding-asset-type-group { /* NEW: Wrap select + label */
+    flex-basis: 100px; /* <<< SHORTENED WIDTH FOR TYPE */
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+.holding-row .holding-ticker-group { /* NEW: Wrap ticker + label */
+    flex-basis: 120px; /* <<< SHORTENED WIDTH FOR TICKER */
+    flex-grow: 1; /* Allow ticker to grow if needed */
+    flex-shrink: 1;
+}
+.holding-row .holding-shares-group { /* NEW: Wrap shares + label */
+    flex-basis: 150px; /* Adjusted width */
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.holding-row select,
+.holding-row input {
+    width: 100%; /* Make inputs fill their group container */
+}
+
+
+.holding-row .remove-holding {
+    flex-shrink: 0; /* Prevent button from shrinking */
+    margin-left: auto; /* Push remove button to the right */
+    margin-bottom: 10px; /* Align button bottom with input boxes */
+}
+
+#portfolio-input-section > button { /* Buttons directly under input section */
+    margin-top: 20px; /* Increased spacing */
+    margin-right: 10px;
+}
+
+/* --- Results Sections --- */
+#portfolio-results-section {
+    margin-top: 40px; /* Added top margin */
+    margin-bottom: 40px; /* Increased margin */
+    padding: 20px 25px; /* Adjusted padding */
+    background-color: var(--bg-color-lighter);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color); /* Add subtle border */
+}
+
+#portfolio-results-section p {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+#portfolio-results-section p span {
+    font-weight: 600;
+    color: #fff; /* Make values stand out */
+}
+#portfolio-results-section p #rotate-out-value {
+    color: var(--warning-color); /* Highlight rotate value */
+}
+
+/* --- Charts --- */
+#plotly-chart,
+#portfolio-plotly-chart {
+    margin-top: 40px; /* Increased margin */
+    margin-bottom: 40px; /* Increased margin */
+    padding: 15px;
+    background-color: var(--bg-color-lighter);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color);
+    min-height: 350px; /* Ensure charts have some minimum height */
+}
+
+/* --- Tables --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    overflow: hidden; /* Clip content to border radius */
+    border: 1px solid var(--border-color); /* Add border around table */
+}
+
+thead {
+    background-color: #2a2d35; /* Header background */
+}
+
+th, td {
+    padding: 12px 15px; /* Adjusted padding */
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9rem;
+}
+
+th {
+    font-weight: 600;
+    color: var(--text-color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+}
+
+tbody tr {
+    background-color: var(--bg-color-lighter);
+    transition: background-color 0.15s ease;
+}
+tbody tr:last-child td {
+    border-bottom: none; /* Remove border from last row */
+}
+
+tbody tr:hover {
+    background-color: var(--bg-color-input); /* Hover effect */
+}
+
+/* --- Status Messages --- */
+#status-message,
+#portfolio-status-message {
+    margin: 20px auto; /* Center messages */
+    padding: 12px 20px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    font-weight: 500;
+    max-width: 80%; /* Limit width */
+    display: none; /* Hidden by default */
+    box-shadow: var(--box-shadow);
+}
+
+#status-message.error, #portfolio-status-message.error { background-color: var(--error-color); color: #fff; }
+#status-message.success, #portfolio-status-message.success { background-color: var(--success-color); color: #111; }
+#status-message.warning, #portfolio-status-message.warning { background-color: var(--warning-color); color: #111; }
+#status-message.info, #portfolio-status-message.info { background-color: var(--primary-color); color: #fff; }
+
+
+/* --- Responsive --- */
+@media (max-width: 992px) { /* Wider breakpoint for table scroll */
+    #portfolio-results-section {
+        overflow-x: auto; /* Allow table scrolling */
+    }
+    table {
+        min-width: 700px; /* Ensure table columns don't collapse too much */
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+        font-size: 14px;
+    }
+    h1 { font-size: 1.7rem; }
+    h2 { font-size: 1.4rem; }
+    h3 { font-size: 1.15rem; }
+
+    #stbr-form {
+        flex-direction: column; /* Stack form elements */
+        align-items: stretch; /* Stretch items full width */
+        gap: 20px;
+        padding: 20px;
+    }
+    #stbr-form button[type="submit"] {
+        width: 100%; /* Full width button */
+    }
+
+    #holdings-list .holding-row {
+        flex-wrap: wrap; /* Allow wrapping within a row */
+        gap: 10px; /* Reduce gap */
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    /* Adjust flex-basis for smaller screens */
+    .holding-row .holding-asset-type-group,
+    .holding-row .holding-ticker-group,
+    .holding-row .holding-shares-group {
+        flex-basis: calc(50% - 10px); /* Roughly 2 per row */
+        min-width: 120px;
+    }
+    .holding-row .remove-holding {
+        flex-basis: 100%; /* Full width remove button */
+        margin-left: 0; /* Reset margin */
+        margin-top: 10px;
+        width: auto; /* Auto width */
+    }
+
+
+    th, td {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    h1 { font-size: 1.5rem; }
+
+    button, button[type="submit"], button[type="button"] {
+        padding: 10px 15px;
+        font-size: 0.85rem;
+    }
+
+    /* Ensure inputs take reasonable space */
+    .holding-row .holding-asset-type-group,
+    .holding-row .holding-ticker-group,
+    .holding-row .holding-shares-group {
+        flex-basis: 100%; /* Stack completely on smallest screens */
+    }
+
+    th, td {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+}
